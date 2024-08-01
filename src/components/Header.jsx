@@ -1,7 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../assets/react.svg";
+import { useState } from "react";
 
 export const Header = () => {
+  const [hidden, setHidden] = useState(true);
+
+  const activeClass =
+    "text-base block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
+  const inactiveClass =
+    "text-base block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700";
+
   return (
     <header>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -14,6 +22,7 @@ export const Header = () => {
           </Link>
           <div className="flex md:order-2">
             <button
+              onClick={() => setHidden(!hidden)}
               type="button"
               data-collapse-toggle="navbar-search"
               aria-controls="navbar-search"
@@ -64,6 +73,7 @@ export const Header = () => {
               />
             </div>
             <button
+              onClick={() => setHidden(!hidden)}
               data-collapse-toggle="navbar-search"
               type="button"
               className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -89,7 +99,9 @@ export const Header = () => {
             </button>
           </div>
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            className={`${
+              hidden ? "hidden" : ""
+            } items-center justify-between w-full md:flex md:w-auto md:order-1`}
             id="navbar-search"
           >
             <div className="relative mt-3 md:hidden">
@@ -121,7 +133,7 @@ export const Header = () => {
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                  className={({ isActive }) => (isActive ? activeClass : inactiveClass)}
                   end
                 >
                   Home
@@ -130,7 +142,7 @@ export const Header = () => {
               <li>
                 <NavLink
                   to="/movies/popular"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className={({ isActive }) => (isActive ? activeClass : inactiveClass)}
                 >
                   Popular
                 </NavLink>
@@ -138,7 +150,7 @@ export const Header = () => {
               <li>
                 <NavLink
                   to="/movies/top"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className={({ isActive }) => (isActive ? activeClass : inactiveClass)}
                 >
                   Top Rated
                 </NavLink>
@@ -146,7 +158,7 @@ export const Header = () => {
               <li>
                 <NavLink
                   to="/movies/upcomming"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className={({ isActive }) => (isActive ? activeClass : inactiveClass)}
                 >
                   Upcomming
                 </NavLink>
