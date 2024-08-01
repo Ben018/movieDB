@@ -1,9 +1,10 @@
+import { AllRoutes } from "./routes/AllRoutes";
 import "./App.css";
 
 function App() {
   return (
     <div>
-      <h1>MovieDB</h1>
+      <AllRoutes />
     </div>
   );
 }
